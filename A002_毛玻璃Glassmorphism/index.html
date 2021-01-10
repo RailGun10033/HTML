@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url("https:/");
+        *{
+            padding: 0;
+            margin: 0;
+
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            background: linear-gradient(to right,#4158d0,#ffcc70,#c850c0);
+        }
+
+        .glass{
+            font-size: 100px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-weight: bold; */
+            background: linear-gradient(to right, #ffcc07, #4158d0, #c850c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card{
+            position: absolute;
+            width: 600px;
+            height: 350px;
+            border-radius: 20px;
+
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+            backdrop-filter: blur(8px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+           
+        }
+
+        .cardX{
+            position: absolute;
+            width: 300px;
+            height: 175px;
+            border-radius: 20px;
+
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+            backdrop-filter: blur(8px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+            border-left: 1px solid rgba(255, 255, 255, 0.8);
+           
+        }
+
+        .card1{
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            top:30px;
+            left: 30px;
+        }
+
+        .card2{
+            position: absolute;
+            color: white;
+            font-size: 48px;
+            top:150px;
+            left: 30px;
+        }
+
+        .card3{
+            position: absolute;
+            color: white;
+            font-size: 32px;
+            top:220px;
+            left: 30px;
+
+            /* font-family:; */
+        }
+
+        .card4{
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            top:280px;
+            left: 30px;
+        }
+
+        .card5{
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            top:300px;
+            left: 30px;
+        }
+
+        .card6{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid white;
+            border-radius: 50px;
+            
+        }
+
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="glass">Glassmorphism</div>
+    <div class="card">
+        <div class="card1">bank</div>
+        <div class="card2">Libra</div>
+        <div class="card3">6217 0002 6000 1348</div>
+        <div class="card4">VALID THURU</div>
+        <div class="card5">05/28</div>
+        <div class="card6" style="top: 30px;left:480px"></div>
+        <div class="card6" style="top: 30px;left:520px"></div>
+    </div>
+
+    <!-- <div class="cardX">bank</div> -->
+</body>
+</html>

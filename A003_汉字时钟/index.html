@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            position: relative;/*"relative"*/
+            /* background: linear-gradient(to right, #4158d0,#ffcc70,#c850c0); */
+            /* background: radial-gradient(circle, #c850c0,#ffcc70,#4158d0); */
+            background: conic-gradient(#FF3BA7, #FF5800, #FF8100,#FEAC00, #FFCC00, #EDE604,
+                #9ED110, #50B517, #179067, 
+                 #476EAF, #9f49ac, #CC42A2
+                 
+                 );
+        }
+
+        .clockClass{
+            width: 800px;
+            height: 800px;
+
+            border-radius: 800px;
+
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            backdrop-filter: blur(0px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            /* background: linear-gradient(to left, #4158d0,#ffcc70,#c850c0); */
+        }
+
+        .clockClass0 {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 800px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            backdrop-filter: blur(0px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .clockClass1 {
+            position: absolute;
+            width: 620px;
+            height: 620px;
+            border-radius: 620px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            backdrop-filter: blur(0px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .clockClass2 {
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            border-radius: 480px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            backdrop-filter: blur(0px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .clockClass3 {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border-radius: 800px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            backdrop-filter: blur(0px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .clockClass4 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 800px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            backdrop-filter: blur(0px);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .clockBackClass{
+            
+            background: linear-gradient(to top,#ffcc70, #4158d0,#c850c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* color: transparent; */
+
+        }
+
+        .lableClass{
+            font-size: 14px;
+            /* transform:rotate(45deg) */
+            /* display: inline-block;
+            text-align: center;
+            padding: 5px 5px; */
+            font-family:楷体;
+            transform-origin: 0 0;
+            /* transition: left 1s, top 1s; */
+            background: linear-gradient(to right, #4158d0,#c850c0,#ffcc70);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* color: transparent; */
+        }
+        
+    </style>
+
+</head>
+<body>
+    
+    <div class="clockClass0"></div>
+    <div class="clockClass1"></div>
+    <div class="clockClass2"></div>
+    <div class="clockClass3"></div>
+    <div class="clockClass4"></div>
+    
+    
+    <div class="clockBackClass" id="clockBackID"></div>
+    
+    <script>
+
+        let c = document.getElementById("clockBackID");
+
+        let lableList = [
+            [createTextList(1, 13, "月"), []],
+            [createTextList(1, 32, "日"), []],
+            [createTextList(0, 24, "时"), []],
+            [createTextList(0, 60, "分"), []],
+            [createTextList(0, 60, "秒"), []],
+        ];
+        
+        viewDidLoad();
+        function viewDidLoad() {
+            for (let i = 0; i < lableList.length; i++) {
+                for (let j = 0; j < lableList[i][0].length; j++) {
+                    let lable = createLable(lableList[i][0][j]);
+                    c.appendChild(lable);
+                    lableList[i][1][j] = lable;
+                }
+                
+            }
+        }
+
+        let date = new Date();
+        let initList = [date.getMonth(), date.getDate()-1, date.getHours(), date.getMinutes(), date.getSeconds()];
+        let cnt = 1000;
+        var tmpCnt = 0;
+        runLoop(true);
+        for (let index = 0; index < cnt; index++) {
+            self.setTimeout("initTimer()",100);
+        }
+   
+        self.setInterval("runTimer()",1000);
+        
+        function initTimer() {
+            runLoop(true);
+        }
+
+        function runTimer() {
+            runLoop(false);
+        }
+        
+        function runLoop(isInit) {
+            let date = new Date();
+
+            let nowList = [date.getMonth(), date.getDate()-1, date.getHours(), date.getMinutes(), date.getSeconds()];
+            if(isInit){
+                // nowList = [0, 0, 0, 0, 0];
+                tmpCnt = tmpCnt + 1;
+            }
+
+            let centerX = document.body.clientWidth  / 2;
+            let centerY = document.body.clientHeight  / 2;
+
+            for (let i = 0; i < lableList.length; i++) {
+                let r = 70 * i+35;
+                for (let j = 0; j < lableList[i][0].length; j++) {
+                    let lable = lableList[i][1][j];
+                    
+                    let deg = 360 / lableList[i][0].length * (j - nowList[i]);
+                    if (isInit) {
+                        deg = 360 / lableList[i][0].length * (Math.ceil((j - nowList[i]*tmpCnt/cnt)));
+                    }
+                    
+                    let offsetX = centerX + r * Math.cos(Math.PI/180 *(deg));
+                    let offsetY = centerY - r * Math.sin(Math.PI/180 *(deg));
+
+                    if(deg == 0){
+                        lable.style.color = "white";
+                    }else{
+                        // lable.style.color = "transparent";
+                        lable.style.color = "black";
+                    }
+                    lable.style.position = "absolute";
+                    lable.style.left = offsetX + 'px';
+                    lable.style.top  = offsetY + 'px';
+                    lable.style.transform = "rotate("+(-deg)+"deg)";
+
+                }
+                
+            }
+        }
+
+        function createLable(lable_text) {
+            let lable = document.createElement("div")
+            lable.className = "lableClass";
+            lable.innerText = lable_text;
+
+            return lable;
+        }
+
+        function createTextList(start, end , unit) {
+            let numList = ["零","一", "二", "三", "四", "五", "六", "七", "八", "九"];
+            let resultList = [];
+            for (let index = start; index < end; index++) {
+                let bin0 = index % 10;
+                let bin1 = Math.floor(index / 10);
+                let tmp = ""
+                if (bin1 == 0) {
+                    tmp = "" + numList[bin0];
+                } else {
+
+                    if(bin1 != 1){
+                        tmp =  numList[bin1]
+                    }
+                    if(bin0 == 0){
+                         tmp = tmp + "十";
+                    }else{
+                        tmp =  tmp + "十" + numList[bin0];
+                    }
+                }
+                tmp = tmp + unit;
+                resultList.push(tmp);
+            }
+
+            return resultList;
+        }
+
+    </script>
+</body>
+</html>
