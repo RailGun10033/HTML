@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C004_加载特效_方块</title>
+    <style>
+        .block{
+            margin: 100px auto;
+            /* display: inline-block; */
+        }
+        .spinnerSquare div{
+            width: 50px;
+            height: 50px;
+            /* background-color: red; */
+            /* background-image: linear-gradient( red,orange,yellow,green,blue,indigo,violet); */
+            margin: 50px auto;
+            animation: squarePlane 1.2s infinite ease-in-out;
+        }
+
+        .spinnerSquare.spinnerSquare1 {
+            animation-delay: -1.0s;
+            -webkit-animation-delay: -1.0s;
+        }
+
+        .spinnerSquare.spinnerSquare2 {
+            animation-delay: 0s;
+            -webkit-animation-delay: 0s;
+        }
+
+        .spinnerSquare.spinnerSquare2 {
+            animation-delay: 1.0s;
+            -webkit-animation-delay: 1.0s;
+        }
+
+        @keyframes squarePlane {
+            0%{
+                transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                background-color: green;
+            }
+            50%{
+                transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                background-color: hotpink;
+            }
+            100%{
+                transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                background-color: blue;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="spinnerSquare">
+        <div class="spinnerSquare1"></div>
+        <div class="spinnerSquare2"></div>
+        <div class="spinnerSquare3"></div>
+    </div>
+
+    <!-- <div class="block">
+        <div class="spinnerSquare"></div>
+        <div class="spinnerSquare"></div>
+        <div class="spinnerSquare"></div>
+    </div>
+
+    <div class="block">
+        <div class="spinnerSquare"></div>
+        <div class="spinnerSquare"></div>
+        <div class="spinnerSquare"></div>
+    </div> -->
+    
+    
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bgClass{
+            margin: 100px auto;
+            /* background: blue; */
+            background-image: linear-gradient( red,orange,yellow,green,blue,indigo,violet);
+            width: 200px;
+            height: 200px;
+        }
+
+        .bgClass div{
+            background: white;
+            width: 15%;
+            height: 100%;
+            display: inline-block;
+            animation: mymove 2s infinite ease-in-out;
+        }
+
+        @keyframes mymove {
+            0%, 40%,100%{
+                transform: scaleY(0.1);
+                /* -webkit-animation: scaleY(0.1); */
+            }
+            20%{
+                transform: scaleY(1.0);
+                /* -webkit-animation: scaleY(1.0); */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bgClass">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+</body>
+</html>

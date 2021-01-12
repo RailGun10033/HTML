@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background: lightblue;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* text-align: center; */
+        }
+
+        #clockClass {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .lable {
+            position: absolute;
+            display: inline-block;
+            text-align: center;
+            padding: 5px 5px;
+            font-size: 40px;
+            transition: left 1s, top 1s;
+            transform-origin: 0 0;
+
+            
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="clockClass" id="clockID"></div>
+    <script>
+        var clock = document.getElementById("clockID");
+        
+        function num2Chinese(min, max, postFix) {
+            let chineseList = ["零","一", "二" ,"三", "四", "五", "六", "七", "八", "九",];
+            let array = []
+            for (let index = min; index < max; index++) {
+                let bin1 = Math.floor(index / 10);
+                let bin = index % 10;
+                let str = ''
+                if(bin1 != 0 ){
+                    if (bin1 != 1) {
+                        str = str + chineseList[bin1];
+                    }
+                    str = str + "十";
+
+                    if (bin != 0) {
+                        str = str + chineseList[bin];
+                    }
+                }else{
+                    str = str + chineseList[bin];
+                }
+
+                str = str + postFix;
+                array.push(str);
+            }
+
+            return array;
+        }
+
+        function getChineseYear() {
+            let chineseList = ["零","一", "二" ,"三", "四", "五", "六", "七", "八", "九"];
+            let date = new Date();
+            let year = date.getFullYear() + "";
+            let strYear = "";
+            let yearList = year.split("");
+
+            for (let index = 0; index < yearList.length; index++) {
+                const element = yearList[index];
+                
+                strYear = strYear + chineseList[element];
+            }
+            strYear = strYear + "年";
+            return strYear;
+        }
+        let monthTextList = num2Chinese(1, 13, "月")
+        let dayTextList = num2Chinese(1, 32, "日");
+        let hourTextList = num2Chinese(0,24,"时");
+        let minTextList = num2Chinese(0, 60, "分");
+        let secondTextList = num2Chinese(0, 60, "秒");
+        
+        let monthLableList = []
+        let dayLableList = []
+        let hourLableList = []
+        let minLableList = []
+        let secondLableList = []
+
+        let dateAndTimeList = [
+            [monthTextList ,monthLableList],
+            [dayTextList, dayLableList],
+            [hourTextList, hourLableList],
+            [minTextList, minLableList],
+            [secondTextList, secondLableList]
+        ]
+
+        let yearDiv = createDivByText("");
+        clock.appendChild(yearDiv);
+
+        viewDidLoad();
+
+        function viewDidLoad() {
+            for (let i = 0; i < dateAndTimeList.length; i++) {
+                for (let j = 0; j < dateAndTimeList[i][0].length; j++) {
+                    let div = createDivByText(dateAndTimeList[i][0][j]);
+                    dateAndTimeList[i][1].push(div);
+                    clock.appendChild(div);
+                }
+                
+            }
+
+             
+            
+        }
+
+        spinner();
+        self.setInterval("spinner()", 100);
+        function spinner() {
+            let currentDate = new Date();
+            let strMonth = currentDate.getMonth();
+            let strDay = currentDate.getDate() - 1;
+            let strHours = currentDate.getHours();
+            let strMinutes = currentDate.getMinutes();
+            let strSeconds = currentDate.getSeconds();
+
+            let nowList = [strMonth, strDay, strHours, strMinutes, strSeconds];
+            
+            let centerX = document.body.clientWidth / 2;
+            let centerY = document.body.clientHeight / 2;
+
+            yearDiv.style.position = "absolute";
+            yearDiv.style.left = centerX + "px";
+            yearDiv.style.top = centerY + "px";
+            yearDiv.innerText = getChineseYear();
+
+            for (let i = 0; i < dateAndTimeList.length; i++) {
+                for (let j = 0; j < dateAndTimeList[i][0].length; j++) {
+                    let div = dateAndTimeList[i][1][j];
+                    // div.style.color = "red";
+    
+                    div.style.position = "absolute";
+                    
+                    let r = (i + 1) * 65 + 35 * i;
+
+                    let deg = 360 / dateAndTimeList[i][1].length * (j - nowList[i]);
+
+                    if (j == nowList[i]) {
+                        div.style.color = "red";
+                    }else{
+                        div.style.color = "black";
+                    }
+
+                    let x =  r * Math.sin(deg * Math.PI / 180 + 0.5* Math.PI) + centerX;
+                    let y = -r * Math.cos(deg * Math.PI / 180 + 0.5* Math.PI) + centerY;
+
+                    div.style.transform = 'rotate('+ deg + 'deg)';
+                    div.style.left = (x + 20) + 'px';
+                    div.style.top = y + 'px';
+                }
+            }
+
+        }
+        function createDivByText(text) {
+            let div = document.createElement("div");
+            div.classList.add("textClass");
+            div.innerText = text;
+            return div;
+        }
+        
+    </script>
+</body>
+</html>

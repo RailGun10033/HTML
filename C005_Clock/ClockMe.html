@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: coral;
+            text-align: center;
+        }
+
+        .digitClock{
+            /* width: 300px;
+            height: 400px; */
+            margin: 100px auto;
+
+            /* background-color: cornsilk; */
+
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+    
+
+    <canvas class="digitClock" id="digitClock" width="500" height="500">您的浏览器不支持canvas</canvas>
+    <div id="lb_time">loading...</div>
+
+    <script>
+        var c = document.getElementById("digitClock");
+        var ctx = c.getContext("2d");
+        // ctx.fillStyle = "red";
+        ctx.strokeStyle = "white";
+        // ctx.fillRect(10,5,100,100);
+        ctx.strokeRect(0,0,500,500);
+        // ctx.stroke();
+        var currentDate = new Date();
+        document.getElementById("lb_time").innerHTML = currentDate.toLocaleString();
+
+
+
+        //获取canvas应该放大的倍数的方法；
+        function getPixelRatio(context) {
+            var backingStore = context.backingStorePixelRatio 
+            || context.webkitBackingStorePixelRatio 
+            || context.mozBackingStorePixelRatio 
+            || context.msBackingStorePixelRatio 
+            || context.oBackingStorePixelRatio 
+            || context.backingStorePixelRatio || 1;
+            return (window.devicePixelRatio || 1) / backingStore;
+        
+        };
+        var ratio = getPixelRatio(ctx);
+        // c.width = 250 * ratio;
+        // c.height = 250 * ratio;
+        ctx.scale(ratio, ratio);
+
+        var int=self.setInterval("loopThread()", 1000);
+        
+        function loopThread() {
+            
+            repaint();
+        }
+
+        function repaint() {
+            currentDate = new Date();
+            
+            
+            var localString = currentDate.toLocaleString();
+            document.getElementById("lb_time").innerHTML = localString;
+
+            var centerX = c.width;
+            var centerY = c.height;
+
+            ctx.clearRect(1, 1, c.width-2, c.height-2);
+
+            var strHours = currentDate.getHours();
+            var strMinutes = currentDate.getMinutes();
+            var strSeconds = currentDate.getSeconds();
+
+            ctx.fillStyle = "white";
+            ctx.font="24px Verdana";
+            ctx.fillText(localString, 10, centerY/4);
+            
+
+        }
+    </script>
+
+
+    
+</body>
+</html>
