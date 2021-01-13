@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* *{
+            padding: 0;
+            margin: 0;
+
+        } */
+        body{
+            background: linear-gradient(to right, #4040d0, #f0c070, #c050c0);
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            position: relative;
+
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .glass{
+            font-size: 60px;
+            background: linear-gradient(to right, #f0c070, #4040d0, #c050c0);
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .panel{
+            position: absolute;
+            width: 600px;
+            height: 350px;
+
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+            border-radius: 20px;
+
+            backdrop-filter: blur(8px) ;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.6);
+
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="glass">123456</div>
+
+    <div class="panel"></div>
+</body>
+</html>
