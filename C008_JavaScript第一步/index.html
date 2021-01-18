@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    
+    <button>press</button>
+    <canvas id= 'bgScene'></canvas>
+    <script>
+        let but = document.querySelector("button");
+
+        but.onclick = function(){
+            let name = prompt("What's your name?");
+            alert('Hello' + name + ',nice to see you!');
+        }
+
+        var c = document.getElementById('bgScene');
+        var ctx = document.context();
+
+        ctx.fillStyle = "#FF0000";
+        ctx.draw
+
+    </script>
+</body>
+</html>
