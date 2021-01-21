@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+
+        body{
+            height: 100vh;
+            width: 100vw;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            display: flex;
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #storyText{
+            /* position: absolute; */
+            
+            background-color: #F5C34C;
+            width: 300px;
+            height: 200px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div><b>请输入自定义的名字:</b><input type="text" placeholder="李雷" id="myName"></div>
+    <div style="text-align: left;">
+        <b>公制</b> <input type="radio" name="unit" checked value="0">
+        <b>英制</b> <input type="radio" name="unit" value="1">
+        <button id="btn_Creator">随机生成笑话</button>
+        
+    </div>
+    
+    <div id="storyText"></div>
+
+    <script>
+        let storyTemplate0 = "今天气温 <replace_tmp>，<replace_0>出门散步。当走到<replace_1>门前时，突然就在人行道<replace_2>。人们都惊呆了，<replace_3>全程目睹但并没有慌，因为<replace_0>是一个 <replace_weight>的胖子，天气又辣么热。";
+        let temparature = 35;
+        let weight = 140;
+        let names = ['阿笠博士', '目暮警官', '沃克', '甚平'];
+        let places = ['肯德基', '麦当劳', '迪士尼乐园', '欢乐谷'];
+        let actions = ['自燃了', '化成了一坨泥了', '变成一只鼻涕虫爬走了']
+        let storyElemete = document.getElementById("storyText");
+        let btn_Creator = document.getElementById("btn_Creator");
+        let selectorUnit = document.getElementsByName("unit");
+        let myName = document.getElementById("myName");
+
+        btn_Creator.onclick = function (){
+            randomChange();
+        }
+
+        function randomChange() {
+            let storyTemplate = storyTemplate0;
+            let unit = selectorUnit[0].checked;
+            if (unit) {
+                storyTemplate = storyTemplate.replace('<replace_tmp>', temparature + '摄氏度');
+                storyTemplate = storyTemplate.replace('<replace_weight>', weight + '公斤');
+            }else{
+                storyTemplate = storyTemplate.replace('<replace_tmp>', (temparature*1.8+32)+ '华氏度');
+                storyTemplate = storyTemplate.replace('<replace_weight>', weight*2.20462262 + '磅');
+            }
+            storyTemplate = storyTemplate.replace(/<replace_0>/g, randomArray(names));/*全文替换*/
+            storyTemplate = storyTemplate.replace('<replace_1>', randomArray(places));
+            storyTemplate = storyTemplate.replace('<replace_2>', randomArray(actions)); 
+            if(myName.value != ''){
+                storyTemplate = storyTemplate.replace('<replace_3>', myName.value); 
+            }else{
+                storyTemplate = storyTemplate.replace('<replace_3>', myName.placeholder); 
+            }
+              
+            storyTemplate = storyElemete.innerText = storyTemplate;
+        }
+
+        function randomArray(array) {
+            let rand = Math.random();
+            let randomIndex = Math.floor(rand*array.length);
+            return array[randomIndex];
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(107, 20, 95);
+            /* background: linear-gradient(to right bottom, rgb(234,50,125), rgb(255,100,200), rgb(245,128,128)); */
+        }
+
+        form{
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255,255,255,0.6),
+                rgba(255,255,255,0.1)
+            );
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.7);
+            border-left: 1px solid rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            
+        }
+
+        .titleDiv{
+            height: 0px;
+            /* width: 100%; */
+            /* background-color: wheat; */
+            /* position: absolute; */
+            /* text-align: center; */
+            /* vertical-align: center; */
+            font-size: 36px;
+        }
+        .centerDiv{
+            height: 80%;
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+            /* background-color: gray; */
+
+        }
+
+        .centerDiv .labelDiv{
+            text-align: right;
+            margin: 5px;
+        }
+        .centerDiv label{
+            /* position: absolute; */
+            /* display: inline-block; */
+            margin-top: 15px;
+            display: flex;
+            font-size: 14px;
+            /* justify-content: center; */
+            flex-direction: column;
+        }
+
+        .centerDiv input{
+            /* position: absolute; */
+            /* display: inline-block; */
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: right;
+            text-align: center;
+        }
+
+        .submitDiv input{
+            margin-left: 10px;
+            width: 100px;
+            height: 100px;
+            /* text-align: center; */
+            font-size: 24px;
+            padding:20% ;
+            background-color: rgba(99, 93, 156,0.0);
+            border-width: 0px;
+            color: white;
+            border-radius: 20px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <form>
+        <div class="titleDiv">
+            Django Pro System
+        </div>
+        <div class="centerDiv">
+            <div class="labelDiv">
+                <label for="fname">Name</label>
+                <label for="fname">Password</label>
+                <label for="fname">Email</label>
+                <label for="fname">Verfiy Code</label>
+            </div>
+            <div class="inputDiv">
+                <input type="text" id="fname" placeholder="Name">
+                <input type="text" id="fname" placeholder="Password">
+                <input type="text" id="fname" placeholder="Email">
+                <input type="text" id="fname" placeholder="Verfiy Code">
+            </div>
+
+            <div class="submitDiv">
+                <input type="submit" value="Login">
+            </div>
+        </div>
+    </form>
+
+
+    <script>
+        let formLogin = document.querySelector('form');
+
+        formLogin.addEventListener('submit', function (e) {
+            let inputs = document.querySelectorAll('input');
+            for (let index = 0; index < inputs.length; index++) {
+                key = inputs[index];
+                if(key.type != 'submit' && key.value == ''){
+                    key.style.borderColor = 'red';
+                    e.preventDefault();//阻止表单提交
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

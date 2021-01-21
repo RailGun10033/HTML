@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnChangeBgColor">Change Backgroud Color</button>
+
+    <script>
+        let btnChangeBgColor = document.getElementById("btnChangeBgColor");
+        /* 
+        onclick:单击
+        onfocus:处于焦点  Tab
+        onblur:解除焦点 Tab
+        ondblclick:双击
+        onmousemove:鼠标移走
+        onmouseover:鼠标移过来
+        ...
+        */
+        // btnChangeBgColor.onmouseover = changeBgColor; 
+
+        btnChangeBgColor.addEventListener('click', changeBgColor); 
+
+        //这种模式可以给同一个监听器注册多个处理器， 前面的方式不可以，会覆盖掉
+        //可以使用removeEventListener()删除事件处理程序代码
+        // myElement.addEventListener('click', functionA);
+        // myElement.addEventListener('click', functionB);
+        function random(number) {
+            return Math.floor(Math.random()*(number+1));
+        }
+        function changeBgColor(e) {
+            const rndColor = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            document.body.style.backgroundColor = rndColor;
+            console.log(e.target);
+        }
+    </script>
+</body>
+</html>

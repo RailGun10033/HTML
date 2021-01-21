@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: inline-block;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        div{
+            /* margin: 1px; */
+            height: 25%;
+            width: 25%;
+            background-color: blueviolet;
+            /* float: left; */
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            color: white;
+            /* border: white solid 1px; */
+            /* background-color: linear-gradient(to right bottom,red, blue); */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                let div = document.createElement('div');
+                document.body.appendChild(div);
+                div.addEventListener("mouseover", changeBgColor);
+            }
+        }
+
+        function random(number) {
+            return Math.floor(Math.random()*(number+1));
+        }
+        
+        function changeBgColor(e) {
+            const rndColorR = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            const rndColorG = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            const rndColorB = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            // e.target.style.backgroundColor = rndColor;
+            e.target.style.background = 'linear-gradient(to right bottom,'+rndColorR + ',' + rndColorG +','+ rndColorB +')';
+            e.target.innerText = rndColorR + ',\n' + rndColorG +',\n'+ rndColorB;
+            // console.log(e.target);
+        }
+
+    </script>
+</body>
+</html>
