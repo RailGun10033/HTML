@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple setInterval clock</title>
+    <style>
+      p {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="clock"></p>
+    <p id = "stopClock">0</p>
+    <button id="btnStart">Start</button>
+    <button id="btnStop">Stop</button>
+    <button id="btnReset">Reset</button>
+    <script>
+        let stopClock = document.getElementById("stopClock");
+        let btnStart = document.getElementById("btnStart");
+        let btnStop = document.getElementById("btnStop");
+        let btnReset = document.getElementById("btnReset");
+
+        let startTime;
+        let bFlag = false;
+
+        stopClock.innerText = formatTime(0);
+        btnStart.addEventListener("click", function() {
+            startTime = Date.now();
+            bFlag = true;
+            // window.setInterval(secondClock, 100);
+        });
+
+        btnStop.addEventListener("click", function() {
+            bFlag = false;
+            // window.clearInterval(secondClock);
+        });
+
+        btnReset.addEventListener("click", function() {
+            bFlag = false;
+            // window.clearInterval(secondClock);
+            stopClock.innerText = stopClock.innerText = formatTime(0);
+        });
+
+        function secondClock() {
+            if (bFlag) {
+                stopClock.innerText = formatTime(Date.now() - startTime);
+            }
+        }
+
+        window.setInterval(secondClock, 100);
+
+        function formatTime(mSecond) {
+            //@para: 毫秒
+            //@return: "Days hour:min:seconds.ss"
+            var seconds = Math.floor(mSecond/1000);
+            var ms = mSecond % 1000;
+            var s = seconds % 60;
+            var min = Math.floor(seconds / 60) % 60;
+            var hour = Math.floor(seconds / 3600) % 24;
+            var day = Math.floor(seconds / 3600 / 24);
+
+            function numSpace(value, len, key) {
+            // 长度不足左边补指定的占位符;
+                var ret = '';
+                var valueLen;
+                value = Math.floor(value);
+                if (value <= 1) {
+                    valueLen = 1;
+                }else{
+                    valueLen = Math.ceil(Math.log10(value+1));
+                }
+
+                for (let index = 0; index < len - valueLen; index++) {
+                        ret += key;
+                }
+                ret += value;
+
+                return ret;
+            }
+
+            return '' + day+'Days ' +numSpace(hour, 2, '0')+ ':'+ numSpace(min, 2, '0')+ ':' + numSpace(s, 2, '0') + '.'+ numSpace(ms, 3, '0');
+        }
+        
+        function displayTime() {
+            let date = new Date();
+            let time = date.toLocaleTimeString();
+            document.querySelector('.clock').textContent = time;
+        }
+
+        displayTime();
+        const createClock = setInterval(displayTime, 1000);
+    </script>
+  </body>
+</html>
