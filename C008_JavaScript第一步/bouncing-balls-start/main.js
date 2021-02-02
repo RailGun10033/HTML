@@ -35,6 +35,8 @@ Ball.prototype.draw = function() {
 }
 
 Ball.prototype.update = function () {
+
+  console.log(this);
   if ((this.x - this.size) <= 0 || (this.x + this.size) >= width) {
     this.xVel = -this.xVel;
   }

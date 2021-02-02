@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+            background-color: gray;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left, .middle, .right{
+            text-align: center;
+            /* vertical-align: middle;
+            display: inline-block; */
+            
+            font-size: 50px;
+            color: white;
+            width: 100px;
+            height: 100px;
+            margin: 25px;
+            line-height: 100px;
+            animation: myMove 2s infinite ease-in-out;
+            transform-origin: center;
+        }
+
+        /* .left{
+            background-color: rgb(207, 111, 22);
+            
+        }
+        .middle{
+            background-color: green;
+        }
+        .right{
+            background-color: blue;
+        } */
+
+        @keyframes myMove {
+            0%{
+                transform:perspective(100px) rotateX(0deg) rotateY(0deg);
+                background-color: thistle;
+            }
+
+            25%{
+                transform:perspective(100px) rotateX(-180deg) rotateY(0deg);
+                background-color:tomato;
+            }
+
+            50%{
+                transform:perspective(100px) rotateX(-180deg) rotateY(-180deg);
+                background-color: violet;
+            }
+
+            75%{
+                transform:perspective(100px) rotateX(0deg) rotateY(-180deg);
+                background-color: yellowgreen;
+            }
+
+            100%{
+                transform:perspective(100px) rotateX(0deg) rotateY(0deg);
+                background-color: turquoise;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="left">壹</div>
+        <div class="middle">贰</div>
+        <div class="right">叁</div>
+    </div>
+    <div class="row">
+        <div class="left">肆</div>
+        <div class="middle">伍</div>
+        <div class="right">陆</div>
+    </div>
+    <div class="row">
+        <div class="left">柒</div>
+        <div class="middle">捌</div>
+        <div class="right">玖</div>
+    </div>
+</body>
+</html>
