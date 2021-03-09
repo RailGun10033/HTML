@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* body{
+            width: 100vw;
+            height: 100vw;
+        } */
+        /* .grid{
+            
+        } */
+    </style>
+</head>
+<body>
+    <canvas id="grid" width="400" height="400"></canvas>
+
+    <script>
+        //获取canvas应该放大的倍数的方法；
+        function getPixelRatio(context) {
+            var backingStore = context.backingStorePixelRatio 
+            || context.webkitBackingStorePixelRatio 
+            || context.mozBackingStorePixelRatio 
+            || context.msBackingStorePixelRatio 
+            || context.oBackingStorePixelRatio 
+            || context.backingStorePixelRatio || 1;
+            return (window.devicePixelRatio || 1) / backingStore;
+        
+        };
+        
+        var c = document.getElementById('grid');
+        var ctx = c.getContext('2d');
+        var ratio = getPixelRatio(ctx);
+    
+        c.width = c.width * ratio;
+        c.height = c.height * ratio;
+        ctx.scale(ratio, ratio);
+        ctx.translate(0.5,0.5);
+        // ctx.strokeStyle = '#00ee00';
+        var offsetX = 20;
+        var offsetY = 20;
+        var cellX = (c.width - offsetX*2) / 18 / 2;
+
+        var cellY = (c.height - offsetY*2) / 18 / 2;
+
+        
+        for (let j = 0; j < 19; j++) {
+            ctx.moveTo(offsetX + 0,        offsetY + j*cellY);
+            ctx.lineTo(offsetX + 18*cellX, offsetY + j*cellY);
+            ctx.stroke();
+        }  
+
+        for (let j = 0; j < 19; j++) {
+            ctx.moveTo(offsetX + j*cellX,offsetY + 0);
+            ctx.lineTo(offsetX + j*cellX,offsetY + 18*cellY);
+            ctx.stroke();
+        }  
+        
+
+        
+    </script>
+</body>
+</html>

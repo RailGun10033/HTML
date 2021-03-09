@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiveChess</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: gray;
+        }
+        div{
+            position: absolute;
+        }
+    </style>
+    <div id = 'outer'></div>
+ 
+    <script>
+        let divList = [];
+        let points = [];
+        var whichOneToPlay = false  //true white false black
+        var gameover = false;
+
+        var cellWidth = 30;
+        var cols = 18;
+        var rows = 18;
+        var outer = document.getElementById('outer');
+
+        outer.style.width = (cellWidth+1)*rows + 3 + 'px';
+        outer.style.height = (cellWidth+1)*rows + 3 + 'px';
+        outer.style.border = 'black solid 1px';
+        outer.style.top = cellWidth/2 -2 + 'px';
+        outer.style.left = cellWidth/2 -2 + 'px';
+
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                let div = document.createElement('div');
+                document.body.appendChild(div);
+                div.style.top = (cellWidth + 1) * i + cellWidth/2 + 'px';
+                div.style.left = (cellWidth + 1) * j + cellWidth/2 +'px';
+                div.style.width = cellWidth + 'px';
+                div.style.height = cellWidth + 'px';
+                div.style.border = 'black solid 1px';
+            }  
+        }
+
+        for (let i = 0; i < rows+1; i++) {
+            var tmpList = []
+            var tmpPoints = []
+            for (let j = 0; j < cols+1; j++) {
+
+                let div = document.createElement('div');
+                document.body.appendChild(div);
+                div.addEventListener("click", playChess);
+
+                div.style.top = (cellWidth + 1) * i + 'px';
+                div.style.left = (cellWidth + 1) * j + 'px';
+                div.style.width = cellWidth - 2 + 'px';
+                div.style.height = cellWidth - 2 + 'px';
+                div.style.borderRadius = cellWidth /2 + 'px';
+
+                div.setAttribute('pX', i);
+                div.setAttribute('pY', j);
+                div.setAttribute('isShow', false);
+                tmpList.push(div);
+                tmpPoints.push(0);
+            }
+            divList.push(tmpList);
+            points.push(tmpPoints);
+        }
+
+        function random(number) {
+            return Math.floor(Math.random()*(number+1));
+        }
+        
+        function changeBgColor(e) {
+            const rndColorR = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            const rndColorG = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            const rndColorB = 'rgb(' + random(255) + ',' + random(255) +',' + random(255) +')';
+            // e.target.style.backgroundColor = rndColor;
+            // e.target.style.background = 'linear-gradient(to right bottom,'+rndColorR + ',' + rndColorG +','+ rndColorB +')';
+            e.target.style.background = rndColorR
+            // e.target.innerText = rndColorR + ',\n' + rndColorG +',\n'+ rndColorB;
+            // console.log(e.target);
+        }
+
+        function playChess(e) {
+            if (gameover){
+                alert('游戏结束，再来一盘？');
+                return;
+            }
+
+            if (e.target.getAttribute('isShow') == 'true') {
+                //这里已经有了
+                alert('请不要叠罗汉！！！');
+                return;
+            }else{
+                e.target.setAttribute('isShow', true)
+            }
+            
+            var x = Number(e.target.getAttribute('pX'));
+            var y = Number(e.target.getAttribute('pY'));
+
+
+            if (whichOneToPlay) {
+               e.target.style.border = 'white solid 1px';
+               e.target.style.backgroundColor = 'white';
+               points[x][y] = 1;
+            }else{
+                e.target.style.border = 'black solid 1px';
+               e.target.style.backgroundColor = 'black';
+               points[x][y] = -1;
+            }
+
+            whichOneToPlay = !whichOneToPlay;
+
+            var winner = checkWinner();
+
+            if (winner != 0) {
+                gameover = true;
+                setTimeout(runLongOperation, 100,winner);
+            }
+            winner = 0;
+
+        }
+
+        function runLongOperation(winner) {
+            if (winner == -1) {
+                alert('黑子获胜');
+            }else if (winner == 1){
+                alert('白子获胜');
+            }
+        }
+        
+        function checkWinner() {
+            var winner = 0;
+            //按行检查
+            for (let index = 0; index < points.length; index++) {
+                winner = checkFive(points[index]);
+                if (winner != 0) {
+                    return winner;
+                }
+            }
+
+            //按列检查
+            for (let j = 0; j < points[0].length; j++) {
+                var tmpCol = [];
+                for (let i = 0; i < points.length; i++) {
+                    tmpCol.push(points[i][j]);
+                }
+                winner = checkFive(tmpCol);
+                if (winner != 0) {
+                    return winner;
+                }
+            }
+
+            // //上边
+            for (let j = 0; j < points[0].length; j++) {
+                //向左下
+                var tmpCol = [];
+                for (let i = 0; i < min(j+1, points.length); i++) {
+                    tmpCol.push(points[i][j-i])
+                    console.log(i, j-i);
+                }
+                console.log(tmpCol.length)
+
+                winner = checkFive(tmpCol);
+                if (winner != 0) {
+                    return winner;
+                }
+
+                //向右下
+                var tmpCol = [];
+                for (let i = 0; i < min(points[0].length - j, points.length); i++) {
+                    tmpCol.push(points[i][j+i])
+                    console.log(i, j+i);
+                }
+
+                console.log(tmpCol.length)
+
+                winner = checkFive(tmpCol);
+                if (winner != 0) {
+                    return winner;
+                }
+            }
+
+            // 左边
+            for (let i = 0; i < points.length; i++) {
+                //向右上
+                var tmpCol = [];
+                for (let j = 0; j < min(i+1, points[0].length); j++) {
+                    tmpCol.push(points[i-j][j]);
+                }
+                winner = checkFive(tmpCol);
+                if (winner != 0) {
+                    return winner;
+                }
+
+                //向右下
+                var tmpCol = [];
+                for (let j = 0; j < min(points[0].length, points.length-i); j++) {
+                    tmpCol.push(points[i+j][j]);
+                }
+                winner = checkFive(tmpCol);
+                if (winner != 0) {
+                    return winner;
+                }
+                
+            }
+
+
+
+            return winner;
+        }
+
+        function checkFive(list) {
+            if (list.length < 5 ){
+                return 0; //
+            }
+
+            var lastValue = 0;
+            var repeatCount = 0;
+            for (let index = 0; index < list.length; index++) {
+                if (list[index] == lastValue) {
+                    repeatCount += 1;
+                }else{
+                    lastValue = list[index];
+                    repeatCount = 1;
+                }
+
+                if (repeatCount >= 5 && lastValue!=0) {
+                    return lastValue
+                }
+            }
+
+            return 0;
+        }
+
+        function min(a, b) {
+            if (a > b) {
+                a = b;
+            }
+            return a;
+        }
+        
+    </script>
+</body>
+</html>
