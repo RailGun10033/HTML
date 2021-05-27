@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #text{
+            font-size: 36px;
+            color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" name="" id="fileSelect">
+    <div id="text"></div>
+    
+</body>
+
+<script>
+        // var txt = "Hey,guys!\nWelcome to three body!\nEnjoy yourself!\n";
+        var c = document.getElementById('text');   
+
+        var fileSelect = document.getElementById('fileSelect');
+        var txt;
+        index = 0;
+        mouseDisplay = true;
+        function changeTxt() {
+            
+            substring = txt.substring(0, index)
+
+            if (index <= txt.length){
+                index += 1;
+                substring = substring + '|';
+                c.innerText = substring;
+                window.scrollTo(0, document.body.scrollHeight);
+            }else{
+                c.innerText = txt;
+            }
+            // console.log(document.body.clientHeight);
+            // document.body.scrollHeight = document.body.clientHeight;
+            
+        }
+        
+
+        fileSelect.addEventListener("change", function selectedFileChanged() {
+            if (this.files.length === 0) {
+                alert("请选择文件！");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function fileReadCompleted() {
+                console.log(reader.result);
+                txt = reader.result;
+                setInterval('changeTxt()',100);
+            }
+            reader.readAsText(this.files[0]);
+            // console.log(reader.result);
+            
+        });
+
+        function sleep(time) {
+            var startTime = new Date().getTime() + parseInt(time, 10);
+            while(new Date().getTime() < startTime) {}
+        }
+        
+        
+</script>
+</html>

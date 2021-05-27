@@ -1,0 +1,19 @@
+{
+    "frends":[
+        {
+            "uid": "1234A",
+            "nickname": "A",
+            "masterIcon": "A.jpg"
+        },
+        {
+            "uid": "1234B",
+            "nickname": "B",
+            "masterIcon": "B.jpg"
+        },
+        {
+            "uid": "1234C",
+            "nickname": "B",
+            "masterIcon": "A.jpg"
+        }
+    ]
+}

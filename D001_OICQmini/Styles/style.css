@@ -1,0 +1,46 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    margin-top: 20px;
+    background-color: whitesmoke;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.mainUI{
+    background-color:gray;
+    height: 600px;
+    width: 800px;
+
+    display:inline-flex
+}
+#contactList{
+    background-color:blanchedalmond;
+    height: 600px;
+    width: 200px;
+}
+.chatBox{
+    background-color:royalblue;
+    height: 600px;
+    width: 600px;
+}
+#chatHistory{
+    background-color:yellowgreen;
+    height: 450px;
+    width: 600px;
+}
+#chatEdit{
+    background-color:goldenrod;
+    height: 150px;
+    width: 600px;
+}
+
+#textInput{
+    padding: 0px;
+    height: 148px;
+    width: 598px;
+    font-size: 24px;
+}
