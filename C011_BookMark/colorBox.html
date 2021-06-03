@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colorBox</title>
+
+    <style>
+        body{
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        #mainBox{
+            /* padding: 50px; */
+            /* display: grid; */
+
+            /* grid-template-columns: 25% 25% 25% 25%; */
+
+            /* display: inline-block; */
+
+            /* display: flexbox;
+            flex-direction: column; */
+
+            /* display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 8px; */
+
+            /* padding-top: 4rpx; */
+            /* column-count: 4; */
+            /* column-gap: 18rpx; */
+        }
+
+        .box{
+            padding: 0px;
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            /* border:1px solid red; */
+            /* overflow: auto; */
+        }
+
+        .boxFill{
+            margin: 0px;
+            padding: 0px;
+            width: 100px;
+            height: 80px;
+            /* border:1px solid green; */
+        }
+
+        .boxTitle{
+            margin: 0px;
+            padding: 0px;
+            width: 98px;
+            height: 20px;
+            text-align: center;
+            font-size: 16px;
+            line-height: 20px;
+            color: black;
+            border:1px solid red;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="mainBox">
+
+    </div>
+
+    <script>
+        var c = document.getElementById('mainBox');
+        var list = [
+            "#66CCCC","#CCFF66","#FF99CC","#FF9999",
+            "#FFCC99","#FF6666","#FFFF66","#99CC66",
+            "#99CC33","#FF9900","#FFCC00","#FF0033",
+            "#FF9966","#CCFF00","#CC3399","#FF6600",
+            "#993399","#CCCC33","#666633","#CC0066",
+            "#99CC00","#009999","#FFCC33","#663399"
+
+
+    ];
+
+        let num  = 0x33;
+        for (let i = 0; i < list.length; i++) {
+            // let colorStr = "rgb("+ num * i + "," + num * j + ","+ num*k+")";
+            let colorStr = list[i];
+            let box = createDivByText("", "box");
+            let boxFill = createDivByText("", "boxFill");
+            let boxTitle = createDivByText(colorStr, "boxTitle");
+            boxFill.style.backgroundColor = colorStr;
+            boxTitle.style.borderColor = colorStr;
+
+            
+            box.appendChild(boxTitle);
+            box.appendChild(boxFill);
+
+            c.appendChild(box);            
+        }
+        
+
+
+        function createDivByText(text, classStyle) {
+            let div = document.createElement("div");
+            div.classList.add(classStyle);
+            div.innerText = text;
+            return div;
+        }
+
+    </script>
+</body>
+</html>
