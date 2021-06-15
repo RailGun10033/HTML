@@ -11,47 +11,72 @@
             height: 100%;
             width: 100%;
             margin: 0px;
-            padding: 0px;
+            padding: 10px;
+            background-color: black;
         }
         #mainBox{
             
         }
+        .boxOutside{
+            padding: 0px;
+            margin: 0px;
+            width: 120px;
+            height: 120px;
+            display: inline-block;
+            /* border:1px solid greenyellow; */
+
+        }
 
         .box{
-            padding: 0px;
-            margin: 10px;
+            padding: 10px;
             width: 100px;
             height: 100px;
-            display: inline-block;
-            /* border:1px solid red; */
-            /* overflow: auto; */
+            position: absolute;
+
+        }
+
+        .box:hover{
+            padding: 1px;
+            width: 118px;
+            height:118px;
         }
 
         .boxFill{
             margin: 0px;
             padding: 0px;
-            width: 100px;
-            height: 80px;
+            width: 100%;
+            height: 80%;
+            text-align: center;
             /* border:1px solid green; */
         }
+
+        
 
         .boxTitle{
             margin: 0px;
             padding: 0px;
-            width: 98px;
-            height: 20px;
+            width: 98%;
+            height: 20%;
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             line-height: 20px;
-            color: black;
+            color: white;
+            /* background-color: white; */
             border:1px solid red;
         }
 
+        .boxLink{
+            text-align: center;
+            /* line-height: 80px; */
+            font-size: 48px;
+            text-decoration: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div id="mainBox">
-
+        
     </div>
 
     <script>
@@ -71,9 +96,11 @@
         for (let i = 0; i < list.length; i++) {
             // let colorStr = "rgb("+ num * i + "," + num * j + ","+ num*k+")";
             let colorStr = list[i];
+            let boxOutside = createDivByText("", "boxOutside");
             let box = createDivByText("", "box");
             let boxFill = createDivByText("", "boxFill");
             let boxTitle = createDivByText(colorStr, "boxTitle");
+            // let boxTitle = createDivByText("Apple", "boxTitle");
             boxFill.style.backgroundColor = colorStr;
             boxTitle.style.borderColor = colorStr;
 
@@ -81,7 +108,14 @@
             box.appendChild(boxTitle);
             box.appendChild(boxFill);
 
-            c.appendChild(box);            
+            let a = document.createElement("a");
+            a.innerText = "";
+            a.classList.add('boxLink');
+
+            a.href = "https:www.baidu.com";
+            boxFill.appendChild(a);
+            boxOutside.appendChild(box);
+            c.appendChild(boxOutside);            
         }
         
 

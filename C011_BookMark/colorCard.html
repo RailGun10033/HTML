@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colorCard</title>
+
+    <style>
+        body{
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .cardOut{
+            width: 220px;
+            height: 220px;
+            display: inline-block;
+        }
+        .card{
+            position: absolute;
+            margin: 10px;
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(102, 204, 204, 0.3);
+        }
+
+        .card:hover{
+            margin: 5px;
+            height: 210px;
+            width: 210px;
+        }
+
+        .cardTitle{
+            height: 20%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 24px;
+            color: white;
+
+            border-radius: 20px 20px 0px 0px ;
+            border: 1px solid rgba(102, 204, 204, 0.5);
+            box-sizing: border-box;
+        }
+
+        .cardFill{
+            height: 80%;
+            width: 100%;  
+            border-radius: 0px 0px 20px 20px;        
+        }
+        .cardFillText{
+            text-align: center;
+            font-size: 60px;
+            height: 100%;
+            line-height: 162px;
+            box-sizing: border-box;
+            color: white;
+            border-radius: 0px 0px 20px 20px;
+            /* background: linear-gradient(
+                to right bottom,
+                rgba(102, 204, 204, 0.8),
+                rgba(102, 204, 204, 0.2)
+            ); */
+        }
+    </style>
+</head>
+<body>
+    <div id="mainBox">
+
+    </div>
+
+    <script>
+        var c = document.getElementById('mainBox');
+        
+
+        for (let index = 0; index < 6; index++) {
+            let cardOut = createDivByText("", "cardOut");
+            let card = createDivByText("", "card");
+            let cardTitle = createDivByText("Apple", "cardTitle");
+            let cardFill = createDivByText("", "cardFill");
+            let cardFillText = createDivByText("", "cardFillText");
+
+            c.appendChild(cardOut);
+            cardOut.appendChild(card);
+            card.appendChild(cardTitle);
+            card.appendChild(cardFill);
+            cardFill.appendChild(cardFillText);
+            card.style.boxShadow = "10px 10px 20px rgba(255, 204, 153, 0.3)";
+            cardTitle.style.borderColor = "rgba(255, 204, 153, 0.5)";
+            cardFill.style.background = "linear-gradient(to right bottom,rgba(255, 204, 153, 0.8),rgba(255, 204, 153, 0.1))";
+            
+        }
+
+        function createDivByText(text, classStyle) {
+            let div = document.createElement("div");
+            div.classList.add(classStyle);
+            div.innerText = text;
+            return div;
+        }
+    </script>
+
+    
+    
+</body>
+</html>

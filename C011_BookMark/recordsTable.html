@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records</title>
+
+    <style>
+
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: inline;
+        }
+        table,tr,td,th{
+            margin: 10px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th{
+            background-color: #66CCCC;
+            color: white;
+        }
+
+        .attrTable, .timeTable{
+            display: inline-table;
+        }
+
+        .redBgColor{
+            background: #FF0033;
+        }
+
+        .greenBgColor{
+            background: #CCFF00;
+        }
+
+        .orangeBgColor{
+            background: #FF9900;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div>
+        <table class="attrTable">
+            <thead>
+                <tr>
+                    <th>attributeName</th>
+                    <th>attributeValue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A</td><td>B</td>
+                </tr>
+                <tr>
+                    <td>A</td><td>B</td>
+                </tr>
+                <tr>
+                    <td>A</td><td>B</td>
+                </tr>
+            </tbody>
+                
+        </table>
+    
+        <table class="timeTable">
+            <thead>
+                <tr>
+                    <th>startTime</th>
+                    <th>stopTime</th>
+                    <th>timeInterval</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>B</td>
+                </tr>
+            </tbody>
+                
+        </table>
+    </div>
+
+
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>testName</th>
+                <th>sub<br>TestName</th>
+                <th>subSub<br>TestName</th>
+                <th>rul</th>
+                <th>ul</th>
+                <th>value</th>
+                <th>ll</th>
+                <th>rll</th>
+                <th>units</th>
+                <th>priority</th>
+                <th>status</th>
+                <th>failure<br>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td class="redBgColor">FAIL</td><td></td>
+            </tr>
+            <tr>
+                <td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td class="greenBgColor">PASS</td><td></td>
+            </tr>
+        </tbody>
+            
+    </table>
+</body>
+</html>
