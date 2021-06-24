@@ -147,6 +147,7 @@
 
             // emulate 3D effect by using cosine and put more particles in the middle
             var speed = Math.cos(Math.random() * Math.PI / 2) * 15;
+            // var speed = 15;
 
             particle.vel.x = Math.cos(angle) * speed;
             particle.vel.y = Math.sin(angle) * speed;
@@ -261,7 +262,7 @@
             var rocket = new Rocket(x);
 
     
-           rocket.explosionColor = random([210, 270, 255, 30, 285]);
+            rocket.explosionColor = random([210, 270, 255, 30, 285]);
             rocket.vel.y = Math.random() * -6 - 4;
             rocket.vel.x = Math.random() * 6 - 3;
             rocket.size = 8;

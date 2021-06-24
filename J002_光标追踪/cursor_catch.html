@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光标追踪</title>
+
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #5e3bddbe;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mainBox{
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            grid-template-rows: repeat(7, 50px);
+            row-gap: 50px;
+            column-gap: 50px;
+        }
+
+        .box{
+            background-color: white;
+            border-left: 15px solid black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6) ;
+        }
+
+        .box:after, .box:before{
+            content: '';
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+            background-color: black;
+
+            position: absolute;
+            display: block;
+
+            left: 20px;
+        }
+
+        .box::before{
+            top:5px;
+        }
+
+        .box::after{
+            bottom: 5px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="mainBox">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+    <script>
+        var flag = true
+
+        var boxList = document.querySelectorAll('.box');
+
+
+        function mouseMove(e) {
+            var mouseX = e.clientX;
+            var mouseY = e.clientY;
+
+            boxList.forEach(box => {
+                var diffX = box.offsetLeft - mouseX;
+                var diffY = box.offsetTop - mouseY;
+
+                var angle = Math.atan2(diffY, diffX) * 180 / Math.PI;
+
+                box.style.transform = 'rotate(' + angle + 'deg)';
+            });
+        }
+        document.onmousemove = mouseMove;
+    </script>
+</body>
+</html>

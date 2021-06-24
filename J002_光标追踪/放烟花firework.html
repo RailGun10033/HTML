@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放烟花fireworks</title>
+
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        canvas{
+            /* background-color: black; */
+            /* height: 500px; */
+            /* width: 1000px; */
+            border: 2px solid greenyellow;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script>
+
+        //获取canvas应该放大的倍数的方法；
+        function getPixelRatio(context) {
+            var backingStore = context.backingStorePixelRatio 
+            || context.webkitBackingStorePixelRatio 
+            || context.mozBackingStorePixelRatio 
+            || context.msBackingStorePixelRatio 
+            || context.oBackingStorePixelRatio 
+            || context.backingStorePixelRatio || 1;
+            return (window.devicePixelRatio || 1) / backingStore;
+        }
+
+        var c = document.getElementById('canvas');
+        var ctx = c.getContext('2d');
+
+        function Particle(pos) {
+            this.pos = {
+                x: pos? pos.x : 0,
+                y: pos? pos.y : 0
+            }
+
+            this.vel = {
+                x: 0,
+                y: 0
+            }
+
+            this.gravity = 0;//重力系数
+            this.resistence = 1;//风阻系数
+            this.shirk = 0.97;//收缩系数
+            this.fade = 0;//淡化系数
+            this.alpha = 1;//透明度
+
+            this.color = 0;//颜色
+            this.size = 2;//粒子半径
+
+            this.flick = false;//是否分裂
+        }
+
+        // 更新位置和速度等关键参数
+        Particle.prototype.update = function() {
+            this.vel.x = this.vel.x * this.resistence;
+            this.vel.y = this.vel.y * this.resistence + this.gravity;
+
+            this.pos.x += this.vel.x;
+            this.pos.y += this.vel.y;
+
+            this.size *= this.shirk;
+            this.alpha -= this.fade;
+        }
+
+        // 绘画到UI
+        Particle.prototype.render = function(ctx) {
+            if (!this.exsits()) {
+                return;
+            }
+            var x = this.pos.x;
+            var y = this.pos.y;
+            var r = this.size;
+            var gradient = ctx.createRadialGradient(x, y, 0.1, x, y, r);
+            gradient.addColorStop(0.1, 'rgba(255, 255, 255, '+ this.alpha +')');
+            gradient.addColorStop(0.8, 'hsla(' + this.color + ',100%, 50%,' + this.alpha + ')');
+            gradient.addColorStop(1, 'hsla(' + this.color +', 100%, 50%, 0.5)');
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // 判断是否存在
+        Particle.prototype.exsits = function() {
+            if (this.size < 1 || this.alpha < 0.1) {
+                return false;
+            }
+            return true;
+        }
+        
+
+        // var r = 100;
+        // var gradient = ctx.createRadialGradient(200, 200, 0.1, 200, 200, r);
+        // gradient.addColorStop(0.1, 'rgba(255, 255, 255, 1)');
+        // gradient.addColorStop(0.8, 'hsla(1, 100%, 50%, 1)');
+        // gradient.addColorStop(1, 'hsla(1, 100%, 50%, 0.5)');
+        // ctx.fillStyle = gradient;
+        // ctx.beginPath();
+        // ctx.arc(200, 200, r, 0, Math.PI*2);
+        // ctx.closePath();
+        // ctx.fill();
+
+        // ctx.restore();
+        ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        var particle = new Particle({'x': 100, 'y': 500});
+        particle.color = 205;
+        particle.vel.x = 0;
+        particle.vel.y = -10;
+        // particle.gravity = 0.098;
+        // particle.fade = 0.1;
+        particle.shirk = 1;
+        particle.size = 5;
+        setInterval(() => {
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.fillRect(0, 0, c.width, c.height);
+            particle.update();
+            particle.render(ctx);
+        }, 100);
+
+        
+    </script>
+</body>
+</html>

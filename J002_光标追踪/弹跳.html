@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            /* border: 1px red solid; */
+            background: linear-gradient(
+                to right bottom,
+                #eec233,
+                #c211b383,
+                #3333EE
+            );
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            /* position: absolute; */
+        }
+
+        .mainBox{
+            /* border: springgreen 1px solid; */
+            height: 600px;
+            width: 950px;
+        }
+
+        .dogs{
+            border: blueviolet 1px solid;
+            height: 450px;
+            width: 950px;
+            left: 0px;
+            top: 0px;
+            /* position: relative; */
+
+            display: grid;
+            grid-template-columns: repeat(10,50px);
+            grid-template-rows: repeat(5, 50px);
+            row-gap: 50px;
+            column-gap: 50px;
+        }
+
+        .dog{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.2)
+            );
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+
+            position: absolute;
+            height: 50px;
+            width: 50px;
+        }
+
+        .watcher{
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: linear-gradient(
+                to right bottom,
+                rgba(205, 228, 4, 0.6),
+                rgba(207, 12, 12, 0.2)
+            );
+
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+
+            
+
+            position: absolute;
+            top: 600px;
+            left: 0px;
+        }
+
+        .control{
+            height: 10px;
+            width: 100px;
+            background:linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255,0.6),
+                rgba(255, 255, 255,0.1)
+            );
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+
+            position: absolute;
+            top: 600px;
+            left: 0px;
+        }
+
+        .leftBlock{
+            height: 600px;
+            width: 10px;
+            background:linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255,0.6),
+                rgba(255, 255, 255,0.1)
+            );
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+
+            position: absolute;
+            top: 50px;
+            left: 90px;
+        }
+
+        .rightBlock{
+            height: 600px;
+            width: 10px;
+            background:linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255,0.6),
+                rgba(255, 255, 255,0.1)
+            );
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 50px;
+            left: 1100px;
+        }
+
+        .topBlock{
+            height: 10px;
+            width: 1000px;
+            background:linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255,0.6),
+                rgba(255, 255, 255,0.1)
+            );
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 40px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBox">
+        <div class="leftBlock"></div>
+        <div class="rightBlock"></div>
+        <div class="topBlock"></div>
+        <div class="watcher"></div>
+        <div class="control"></div>
+    </div>
+
+    <script>
+        var pos = {'x' : 500, 'y' : 600};
+        var vel = {'x' : 5, 'y' : -10};
+        var mainBox = document.querySelector('.mainBox');
+        var control = document.querySelector('.control');
+        var watcher = document.querySelector('.watcher');
+        // var dogs = document.querySelector('.dogs');
+
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 10; j++) {
+                var d = document.createElement('div');
+                d.className = 'dog';
+                d.style.left = 100 * j+ 125 + 'px';
+                d.style.top = 100 * i + 75 + 'px';
+                mainBox.appendChild(d);
+            }
+            
+        }
+        setInterval(() => {
+            pos.x += vel.x;
+            pos.y += vel.y;
+
+            vel.y += 0.098;
+            
+
+            watcher.style.left   = pos.x + 'px';
+            watcher.style.top = pos.y + 'px';
+
+            if(pos.x >= 1080 || pos.x < 100){
+                vel.x = -vel.x;
+            }
+
+            if(pos.x <=control.offsetLeft+50 && pos.x >= control.offsetLeft-50 && pos.y <= control.offsetTop + 20 && pos.y >= control.offsetTop - 20){
+                vel.y = -vel.y;
+            }
+
+            var dogss = document.querySelectorAll('.dog');
+            dogss.forEach(dog => {
+                let dogX = dog.offsetLeft;
+                let dogY = dog.offsetTop;
+                if (pos.x <= dogX + 50 && pos.x >= dogX && pos.y <= dogY + 50 && pos.y >= dogY) {
+                    mainBox.removeChild(dog);
+                }
+
+            });
+            
+        }, 20);
+
+        function mousemove(e) {
+            
+            
+            control.style.left = e.clientX - 50 + 'px';
+
+            if(e.clientY >= 500 && e.clientY <= 650){
+                control.style.top = e.clientY + 'px';
+            }
+        }
+
+        document.onmousemove = mousemove;
+    </script>
+    
+</body>
+</html>

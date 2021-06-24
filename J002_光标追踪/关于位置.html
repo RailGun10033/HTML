@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(
+                to right top,
+                #0be7e7,
+                #6933ccda,
+                #EE3333
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ball{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            
+            background-color: rgb(166, 255, 0);
+            top: -250px;
+            left: 200px;
+            position: relative;
+        }
+
+        .ball1{
+            height: 150px;
+            width: 150px;
+            background:violet;
+            top: 250px;
+            left:-150px;
+        }
+
+        .box{
+            position: absolute;
+            border-left:1px solid rgba(255, 255, 255, 0.8);
+            border-top:1px solid rgba(255, 255, 255, 0.8);
+            height: 500px;
+            width: 700px;
+            border-radius: 20px;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            
+        }
+
+        .main{
+            border:1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            width: 800px;
+
+            position: absolute;
+        }
+
+        .company{
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 24px;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            top: 450px;
+            left: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="ball"></div>
+        <div class="ball ball1"></div>
+        <div class="box">
+            <p class="company">BYD Electronics International Company Ltd.</p>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
