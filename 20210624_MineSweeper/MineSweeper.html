@@ -28,14 +28,14 @@
 
         .mainBox{
             height: 610px;
-            width: 610px;
-
-            /* background: linear-gradient(
+            width: 810px;
+            background: linear-gradient(
+                to right bottom,
                 rgba(255, 255, 255, 0.6),
                 rgba(255, 255, 255, 0.1)
-            ); */
+            );
 
-            background: rgba(255, 255, 255, 0.2);
+            display: flex;
         }
 
         .subBox{
@@ -44,149 +44,215 @@
             grid-template-rows: repeat(10, 50px);
             row-gap: 10px;
             column-gap: 10px;
-
             margin: 10px;
+        }
+
+        .menuBox{
+            width: 200px;
+            height: 100%;
+            /* background: violet; */
+            display: grid;
+            grid-template-rows: repeat(4, 50px);
+            row-gap: 10px;
+            margin: 10px;
+        }
+
+        .menuSubBox{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.4),
+                rgba(255, 255, 255, 0.2)
+            );
+            color: cornflowerblue;
+            font-size: 24px;
+            font-family:'Courier New', Courier, monospace;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+
+        .menuSubBox:active{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.7),
+                rgba(255, 255, 255, 0.4)
+            );
         }
 
         .box{
             background: linear-gradient(
                 to right bottom,
-                rgba(255, 255, 255, 0.6),
-                rgba(255, 255, 255, 0.1)
+                rgba(65, 21, 167, 0.4),
+                rgba(65, 21, 167, 0.2)
             );
             align-items: center;
             justify-content: center;
             display: flex;
-
+            font-size: 24px;
             cursor: pointer;
+            
 
             border-radius: 5px;
 
+            color: white;
         }
 
-        .boxGreen{
+        .box-1{
             background: linear-gradient(
                 to right bottom,
                 rgba(0, 255, 0, 0.6),
                 rgba(0, 255, 0, 0.1)
             );
+            
         }
+
+        .box-2{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 0, 0, 0.6),
+                rgba(255, 0, 0, 0.1)
+            );
+        }
+
+        .box0{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+        }
+
+        .box1{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(182, 4, 253);
+        }
+        .box2{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(253, 4, 178);
+        }
+
+        .box3{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(4, 253, 211);
+        }
+
+        .box4{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(253, 4, 241);
+        }
+
+        .box5{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(4, 112, 253);
+        }
+
+        .box6{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(253, 116, 4);
+        }
+
+        .box7{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(253, 33, 4);
+        }
+
+        .box8{
+            background: linear-gradient(
+                to right bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0.1)
+            );
+
+            color: rgb(253, 4, 129);
+        }
+
+
     </style>
 </head>
 <body>
     <div class="mainBox" oncontextmenu = "hideContextmenu()">
-        <!-- <div class="subBox">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div> -->
         <div class="subBox"></div>
-    
+
+        <div class="menuBox">
+            <div class="menuSubBox" id="flagCount">0</div>
+            <div class="menuSubBox" id="timeLable">00:00:00.00</div>
+            <div class="menuSubBox" id="resetButton">Reset</div>
+        </div>
     </div>
+
+
 
     <script>
         function hideContextmenu(){
-
+            //屏蔽右键点击DOM元素弹出按钮
             window.event.returnValue = false ;
-
         }
+
+        var flagCountLable = document.getElementById("flagCount");
+        var timeLabel = document.getElementById("timeLable");
+        var resetButton = document.getElementById("resetButton");
+            
+        // 从长度为(begin - end)数组中随机取出 selectNum个数字
+        function getRandomList(begin, end, selectNum) {
+            let arr = new Array(end - begin);
+            for (let index = begin; index < end; index++) {
+                arr[index] = index;
+            }
+
+            let resultArr = new Array(selectNum);
+
+            for (let i = 0; i < selectNum; i++) {
+               while(true){
+                    let randIndex = Math.floor(Math.random() * arr.length);
+                    if(arr[randIndex] != "false"){
+                        resultArr[i] = arr[randIndex];
+                        arr[randIndex] = "false";
+                        break;
+                    }
+               }
+            }
+
+            return resultArr;
+        }
+
         var X_COUNT = 10;
         var Y_COUNT = 10;
         var MINE_COUNT = 10;
@@ -200,21 +266,23 @@
             };
 
             this.iFlag = 0; //0 - 未点击过原始状态 1 - 右键标记插旗  2 - 左键点击排雷
-            this.value = 0;
+            this.value = 0; //x：周围的地雷的数量为x 0：周围地雷数为0 -1：此单元格有地雷
         }
 
 
         function ContainerModel(rows, cols, mineCount) {
-            this.rows = rows;
-            this.cols = cols;
-            this.mineCount = mineCount;
-            this.flagCount = 0;
+            this.rows = rows; //网格行数
+            this.cols = cols; //网格列数
+            this.mineCount = mineCount; //地雷数量，应小于行数*列数
+            this.flagCount = 0; //标记棋子数量
             this.isBegin = false;
             this.isOver = false;
             this.isWin = true;
             this.boxModels = [];
-
+            this.gameStatus = 0;   //0: 未开始 1：进行中 2：胜利 3：失败
             this.initBox();
+
+            this.countSurroundMine();
         }
 
         ContainerModel.prototype.initBox = function() {
@@ -225,6 +293,175 @@
                     lineBox.push(box);
                 }
                 this.boxModels.push(lineBox);
+            }
+
+            // 将雷随机放入网格中
+            let mineLocations = getRandomList(0, this.rows * this.cols, this.mineCount);
+
+            mineLocations.forEach(mineLocation => {
+                let x = Math.floor(mineLocation / this.cols);
+                let y = mineLocation % this.cols;
+                this.boxModels[y][x].value = -1;
+            });
+        }
+
+        ContainerModel.prototype.countSurroundMine = function() {
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    if (this.boxModels[i][j].value == 0) {
+                        // 左上
+                        if(i >=1 && j >= 1 && this.boxModels[i-1][j-1].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                        // 上
+                        if(i >=1  && this.boxModels[i-1][j].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                        // 右上
+                        if(i >=1 && j <= this.cols-2 && this.boxModels[i-1][j+1].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+
+                        // 左
+                        if(j >= 1 && this.boxModels[i][j-1].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                        // 右
+                        if( j <= this.cols-2 && this.boxModels[i][j+1].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                        // 左下
+                        if(i <= this.rows-2 && j >= 1 && this.boxModels[i+1][j-1].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                        
+                        // 下
+                        if(i <= this.rows-2 && this.boxModels[i+1][j].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                        // 右下
+                        if(i <= this.rows-2 && j <= this.cols-2 && this.boxModels[i+1][j+1].value == -1){
+                            this.boxModels[i][j].value++;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 右键标记地雷，放置宏碁
+        ContainerModel.prototype.markMine = function(x , y) {
+            if(this.boxModels[y][x].iFlag == 0){
+                this.boxModels[y][x].iFlag = 1; 
+                this.flagCount++;
+            }else if(this.boxModels[y][x].iFlag == 1){
+                this.boxModels[y][x].iFlag = 0;
+                this.flagCount--;
+            } 
+        }
+
+        ContainerModel.prototype.isWinTheGame = function () {
+            if (this.gameStatus == 3) {
+                for (let i = 0; i < this.rows; i++) {
+                    for (let j = 0; j < this.cols; j++) {
+                        this.boxModels[i][j].iFlag = 2;
+                    }
+                }
+                return ;
+            }
+            var totalCount = this.cols * this.rows;
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    if (this.boxModels[i][j].iFlag == 2) {
+                        totalCount--;
+                    }
+                }
+            }
+
+            if(totalCount == this.mineCount){
+                for (let i = 0; i < this.rows; i++) {
+                    for (let j = 0; j < this.cols; j++) {
+                        this.boxModels[i][j].iFlag = 2;
+                    }
+                }
+                this.gameStatus == 2;
+            }
+        }
+
+        // 左键点击排雷
+        ContainerModel.prototype.removeEmpty = function(x, y) {
+            this.boxModels[y][x].iFlag = 2;
+            if(this.boxModels[y][x].value == -1){
+                this.gameStatus = 3;//踩到雷，游戏结束
+                for (let i = 0; i < this.rows; i++) {
+                    for (let j = 0; j < this.cols; j++) {
+                        this.boxModels[i][j].iFlag = 2;
+                    }
+                }
+                return;
+            }
+
+            if (x <= this.cols-2 && this.boxModels[y][x+1].iFlag == 0){
+                if(this.boxModels[y][x+1].value == 0) {
+                    this.removeEmpty(x+1, y);
+                }else if(this.boxModels[y][x+1].value != -1){
+                    this.boxModels[y][x+1].iFlag = 2;
+                }
+            }
+
+            if (x <= this.cols-2 && y <= this.rows-2 && this.boxModels[y+1][x+1].iFlag == 0){
+                if(this.boxModels[y+1][x+1].value == 0) {
+                    this.removeEmpty(x+1, y+1);
+                }else if(this.boxModels[y+1][x+1].value != -1){
+                    this.boxModels[y+1][x+1].iFlag = 2;
+                }
+            }
+
+            if (x <= this.cols-2 && y >= 1 && this.boxModels[y-1][x+1].iFlag == 0){
+                if(this.boxModels[y-1][x+1].value == 0) {
+                    this.removeEmpty(x+1, y-1);
+                }else if(this.boxModels[y-1][x+1].value != -1){
+                    this.boxModels[y-1][x+1].iFlag = 2;
+                }
+            }
+
+            if (x >= 1 && this.boxModels[y][x-1].iFlag == 0){
+                if(this.boxModels[y][x-1].value == 0) {
+                    this.removeEmpty(x-1, y);
+                }else if(this.boxModels[y][x-1].value != -1){
+                    this.boxModels[y][x-1].iFlag = 2;
+                }
+            }
+
+            if (x >= 1 && y >= 1 && this.boxModels[y-1][x-1].iFlag == 0){
+                if(this.boxModels[y-1][x-1].value == 0) {
+                    this.removeEmpty(x-1, y-1);
+                }else if(this.boxModels[y-1][x-1].value != -1){
+                    this.boxModels[y-1][x-1].iFlag = 2;
+                }
+            }
+
+            if (x >= 1 && y <= this.rows-2 && this.boxModels[y+1][x-1].iFlag == 0){
+                if(this.boxModels[y+1][x-1].value == 0) {
+                    this.removeEmpty(x-1, y+1);
+                }else if(this.boxModels[y+1][x-1].value != -1){
+                    this.boxModels[y+1][x-1].iFlag = 2;
+                }
+            }
+
+            if (y <= this.rows-2 && this.boxModels[y+1][x].iFlag == 0){
+                if(this.boxModels[y+1][x].value == 0) {
+                    this.removeEmpty(x, y+1);
+                }else if(this.boxModels[y+1][x].value != -1){
+                    this.boxModels[y+1][x].iFlag = 2;
+                }
+            }
+
+            if (y >= 1 && this.boxModels[y-1][x].iFlag == 0){
+                if(this.boxModels[y-1][x].value == 0) {
+                    this.removeEmpty(x, y-1);
+                }else if(this.boxModels[y-1][x].value != -1){
+                    this.boxModels[y-1][x].iFlag = 2;
+                }
             }
         }
 
@@ -242,35 +479,86 @@
                     div.className = "box";
                     div.setAttribute('x', j);
                     div.setAttribute('y', i);
-                    
-                    div.addEventListener('mousedown', clickLeft);
+                    div.addEventListener('mousedown', clickCell);
                     subBox.appendChild(div);
-
                     lineBoxView.push(div);
                 } 
                 this.boxViews.push(lineBoxView);
             }
         }
 
-        function clickLeft(e) {
-            var div = e.target;
-            var x = div.getAttribute('x');
-            var y = div.getAttribute('y');
+        BoxView.prototype.updateView = function () {
+            for (let i = 0; i < this.containerModel.rows; i++) {
+                for (let j = 0; j < this.containerModel.cols; j++) {
+                    var div = this.boxViews[i][j];
+                    let boxModel = this.containerModel.boxModels[i][j];
+                    if(boxModel.iFlag == 0){
+                        div.innerText = "";
+                    }else if(boxModel.iFlag == 1){
+                        div.innerText = "🚩";
+                    }else if(boxModel.iFlag == 2){
+                        div.className = "box box" + boxModel.value;
+                        if(boxModel.value == -1){
+                            div.innerText = "💣";
+                            if (this.containerModel.gameStatus == 3) {
+                                div.className = "box box-2";
+                            }
+                        }else if (boxModel.value == 0) {
+                            div.innerText = "";
+                        }else{
+                            div.innerText = boxModel.value;
+                        }
+                        
+                    }
+                } 
+            }
+        }
 
-            if(e.button == "0"){
-                div.innerText = '[' + x + ', ' + y + ']';
-                div.className = 'box boxGreen';
-            }else{
-                div.innerText = '';
-                div.className = 'box';
+        initMenu = function() {
+            resetButton.addEventListener('mousedown', clickReset);
+        }
+
+        clickCell = function(e){
+            if(boxView.containerModel.gameStatus == 0){
+                boxView.containerModel.gameStatus = 1;
             }
 
-            
+            if (boxView.containerModel.gameStatus > 1) {
+                alert("请从头再来！");
+            }
+
+            var div = e.target;
+            var x = parseInt(div.getAttribute('x'));
+            var y = parseInt(div.getAttribute('y'));
+
+            if(e.button == "0"){
+                boxView.containerModel.removeEmpty(x, y);
+            }else{
+                boxView.containerModel.markMine(x , y);
+            }  
+            boxView.containerModel.isWinTheGame();
+            boxView.updateView();
+            flagCountLable.innerText = boxView.containerModel.flagCount;
+        }
+
+        clickReset = function (e) {
+            for (let i = 0; i < boxView.containerModel.rows; i++) {
+                for (let j = 0; j < boxView.containerModel.cols; j++) {
+                    subBox.removeChild(boxView.boxViews[i][j]);
+                } 
+            }
+
+            containerModel = new ContainerModel(Y_COUNT, X_COUNT, MINE_COUNT);
+            boxView = new BoxView(containerModel);
+            boxView.updateView();
         }
 
         var containerModel = new ContainerModel(Y_COUNT, X_COUNT, MINE_COUNT);
-
         var boxView = new BoxView(containerModel);
+
+        boxView.updateView();
+
+        initMenu();
     </script>
 </body>
 </html>
