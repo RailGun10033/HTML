@@ -27,15 +27,15 @@
         }
 
         .mainBox{
-            height: 610px;
-            width: 810px;
+            height: 660px;
+            width: 610px;
             background: linear-gradient(
                 to right bottom,
                 rgba(255, 255, 255, 0.6),
                 rgba(255, 255, 255, 0.1)
             );
 
-            display: flex;
+            /* display: flex; */
         }
 
         .subBox{
@@ -48,12 +48,10 @@
         }
 
         .menuBox{
-            width: 200px;
-            height: 100%;
-            /* background: violet; */
+            height: 40px;
             display: grid;
-            grid-template-rows: repeat(4, 50px);
-            row-gap: 10px;
+            grid-template-columns: repeat(4, 190px);
+            column-gap: 10px;
             margin: 10px;
         }
 
@@ -151,7 +149,7 @@
                 rgba(255, 255, 255, 0.1)
             );
 
-            color: rgb(4, 253, 211);
+            color: rgb(253, 4, 79);
         }
 
         .box4{
@@ -209,13 +207,14 @@
 </head>
 <body>
     <div class="mainBox" oncontextmenu = "hideContextmenu()">
-        <div class="subBox"></div>
+        
 
         <div class="menuBox">
             <div class="menuSubBox" id="flagCount">0</div>
             <div class="menuSubBox" id="timeLable">00:00:00.00</div>
             <div class="menuSubBox" id="resetButton">Reset</div>
         </div>
+        <div class="subBox"></div>
     </div>
 
 
@@ -225,10 +224,15 @@
             //屏蔽右键点击DOM元素弹出按钮
             window.event.returnValue = false ;
         }
+        // document.oncontextmenu=function(){return false;}; //页面禁止右键
+        document.onselectstart=function(){return false;}; //页面禁止选择
 
         var flagCountLable = document.getElementById("flagCount");
         var timeLabel = document.getElementById("timeLable");
         var resetButton = document.getElementById("resetButton");
+        var startTime;
+
+        
             
         // 从长度为(begin - end)数组中随机取出 selectNum个数字
         function getRandomList(begin, end, selectNum) {
@@ -255,7 +259,7 @@
 
         var X_COUNT = 10;
         var Y_COUNT = 10;
-        var MINE_COUNT = 10;
+        var MINE_COUNT = 20;
 
         var subBox = document.querySelector(".subBox");
 
@@ -348,7 +352,7 @@
             }
         }
 
-        // 右键标记地雷，放置宏碁
+        // 右键标记地雷，放置红旗
         ContainerModel.prototype.markMine = function(x , y) {
             if(this.boxModels[y][x].iFlag == 0){
                 this.boxModels[y][x].iFlag = 1; 
@@ -383,11 +387,11 @@
                         this.boxModels[i][j].iFlag = 2;
                     }
                 }
-                this.gameStatus == 2;
+                this.gameStatus = 2;
             }
         }
 
-        // 左键点击排雷
+        // 左键点击排雷，左上 上 右上 左 右 左下 下 右下 八个方向递归搜索
         ContainerModel.prototype.removeEmpty = function(x, y) {
             this.boxModels[y][x].iFlag = 2;
             if(this.boxModels[y][x].value == -1){
@@ -518,9 +522,11 @@
             resetButton.addEventListener('mousedown', clickReset);
         }
 
+        // 地雷格子点击事件响应函数，
         clickCell = function(e){
             if(boxView.containerModel.gameStatus == 0){
                 boxView.containerModel.gameStatus = 1;
+                startTime = new Date().getTime();
             }
 
             if (boxView.containerModel.gameStatus > 1) {
@@ -532,8 +538,10 @@
             var y = parseInt(div.getAttribute('y'));
 
             if(e.button == "0"){
+                // 左键点击
                 boxView.containerModel.removeEmpty(x, y);
             }else{
+                // 右键点击
                 boxView.containerModel.markMine(x , y);
             }  
             boxView.containerModel.isWinTheGame();
@@ -541,6 +549,7 @@
             flagCountLable.innerText = boxView.containerModel.flagCount;
         }
 
+        // 重新开始游戏
         clickReset = function (e) {
             for (let i = 0; i < boxView.containerModel.rows; i++) {
                 for (let j = 0; j < boxView.containerModel.cols; j++) {
@@ -551,7 +560,12 @@
             containerModel = new ContainerModel(Y_COUNT, X_COUNT, MINE_COUNT);
             boxView = new BoxView(containerModel);
             boxView.updateView();
+
+            timeLabel.innerText = '00:00:00.00';
+            flagCountLable.innerText = "0";
         }
+
+        
 
         var containerModel = new ContainerModel(Y_COUNT, X_COUNT, MINE_COUNT);
         var boxView = new BoxView(containerModel);
@@ -559,6 +573,25 @@
         boxView.updateView();
 
         initMenu();
+        function fillZeroIfLessThanTen(num) {
+            if (num < 10) {
+                return '0' + num;
+            }else{
+                return ''  + num;
+            }
+        }
+
+        setInterval(() => {
+            if (boxView.containerModel.gameStatus == 1) {
+                var millionSeconds = new Date().getTime() - startTime;
+
+                var hours = Math.floor(millionSeconds/1000 /(60 * 60));
+                var minutes = Math.floor((Math.floor(millionSeconds/1000) % (60 * 60) / 60));
+                var seconds = Math.floor(millionSeconds/1000) % 60;
+                var pointSeconds = Math.floor((millionSeconds % 1000)/10);
+                timeLabel.innerText = fillZeroIfLessThanTen(hours) + ':' + fillZeroIfLessThanTen(minutes) + ':' + fillZeroIfLessThanTen(seconds) + '.' + fillZeroIfLessThanTen(pointSeconds);
+            }
+        }, 100);
     </script>
 </body>
 </html>
